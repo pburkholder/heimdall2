@@ -2,14 +2,14 @@
   <v-stepper-content step="2">
     <v-form v-model="valid">
       <v-text-field
-        :value="mfa_token"
+        :value="mfaToken"
         label="MFA Token"
         :rules="[req_rule, mfa_rule]"
         @input="change_mfa_token"
         @keyup.enter="proceed"
       />
       <v-text-field
-        :value="mfa_serial"
+        :value="mfaSerial"
         label="MFA Device ARN (Optional)"
         hint="Defaults to virtual IAM device"
         @input="change_mfa_serial"
@@ -39,8 +39,8 @@ import {LocalStorageVal} from '../../../../utilities/helper_util';
 // We declare the props separately to make props types inferable.
 const Props = Vue.extend({
   props: {
-    mfa_serial: String,
-    mfa_token: String
+    mfaSerial: String,
+    mfaToken: String
   }
 });
 
@@ -73,13 +73,13 @@ export default class S3Reader extends Props {
 
   /** Handles changes to mfa serial */
   change_mfa_token(new_value: string) {
-    this.$emit('update:mfa_token', new_value);
+    this.$emit('update:mfaToken', new_value);
   }
 
   /** Handles changes to mfa token */
   change_mfa_serial(new_value: string) {
     local_mfa_serial.set(new_value);
-    this.$emit('update:mfa_serial', new_value);
+    this.$emit('update:mfaSerial', new_value);
   }
 
   /** When button is pressed or enter is pressed */

@@ -73,7 +73,7 @@
                                   omit_overlayed_controls: true
                                 }"
                                 :value="null"
-                                :show_compliance="true"
+                                :show-compliance="true"
                               />
                             </v-card-actions>
                           </v-card>
@@ -86,19 +86,19 @@
                   <ApexLineChart
                     :series="compliance_series"
                     :categories="fileTimes"
-                    :upper_range="100"
+                    :upper-range="100"
                     :title="'Total Compliance'"
-                    :y_title="'% Compliance'"
+                    :y-title="'% Compliance'"
                   />
                 </v-col>
                 <v-col v-else-if="tab == 2 && ableTab" cols="12">
                   <ApexLineChart
                     :series="line_sev_series"
                     :categories="fileTimes"
-                    :upper_range="total_failed + 1"
-                    :sev_chart="true"
+                    :upper-range="total_failed + 1"
+                    :sev-chart="true"
                     :title="'Failed Tests by Severity'"
-                    :y_title="'Tests Failed'"
+                    :y-title="'Tests Failed'"
                   />
                 </v-col>
                 <v-col v-else cols="12" />
@@ -163,9 +163,9 @@
               v-for="i in num_shown_files"
               :key="i - 1 + start_index"
               :name="files[i - 1 + start_index].filename"
-              :start_time="fileTimes[i - 1]"
+              :start-time="fileTimes[i - 1]"
               :index="i + start_index"
-              :show_index="files.length > num_shown_files"
+              :show-index="files.length > num_shown_files"
             />
             <v-col cols="1">
               <br />
@@ -188,7 +188,7 @@
             v-for="(control_set, i) in show_sets"
             :key="i"
             :controls="control_set"
-            :shown_files="num_shown_files"
+            :shown-files="num_shown_files"
             class="my-4"
             :shift="start_index"
             :expanded="expanded_view"

@@ -6,7 +6,7 @@
       <Cell
         v-for="child in node.children"
         :key="child.data.key"
-        :selected_control_id="selected_control_id"
+        :selected-control-i-d="selectedControlID"
         :depth="depth + 1"
         :node="child"
         :scales="scales"
@@ -54,7 +54,7 @@ export interface XYScale {
 // We declare the props separately to make props types inferable.
 const CellProps = Vue.extend({
   props: {
-    selected_control_id: {
+    selectedControlID: {
       type: String, // Of type string
       required: false
     },
@@ -128,13 +128,13 @@ export default class Cell extends CellProps {
     return !this.is_control;
   }
 
-  /** Are we selected? True if selected_control_id matches our id, and we are in selected heirarchy */
+  /** Are we selected? True if selectedControlID matches our id, and we are in selected heirarchy */
   get is_selected(): boolean {
     return (
       this.is_control && // We are a control
       this._depth !== undefined && // Implies an ancesrtor is selected
       (this._node.data as TreemapNodeLeaf).control.data.id ===
-        this.selected_control_id // Our control id matches
+        this.selectedControlID // Our control id matches
     );
   }
 

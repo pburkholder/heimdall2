@@ -88,14 +88,14 @@ export function derive_mfa_serial(user_access_token: string): string | null {
  * Yields the AWS error on failure.
  */
 export async function get_session_token(
-  access_token: string,
+  accessToken: string,
   secret_key: string,
   duration: number,
   mfa_info?: MFA_Info
 ): Promise<Auth> {
   // Instanciate STS with our base and secret token
   let sts = new STS({
-    accessKeyId: access_token,
+    accessKeyId: accessToken,
     secretAccessKey: secret_key
   });
 

@@ -30,10 +30,10 @@ const ApexLineChartProps = Vue.extend({
         return value.every(element => typeof element === 'object');
       }
     }, // Should be of type object[]
-    upper_range: Number, //upper bound of y axis
-    sev_chart: Boolean, //identifies chart as severity chart
+    upperRange: Number, //upper bound of y axis
+    sevChart: Boolean, //identifies chart as severity chart
     title: String,
-    y_title: String
+    yTitle: String
   }
 });
 
@@ -69,12 +69,12 @@ export default class ApexLineChart extends ApexLineChartProps {
 
   //creates differing number of ticks based on number of controls
   get y_axis_tick(): number {
-    if (this.upper_range < 15) {
-      return this.upper_range;
-    } else if (this.upper_range < 50) {
-      return Math.floor(this.upper_range / 5);
+    if (this.upperRange < 15) {
+      return this.upperRange;
+    } else if (this.upperRange < 50) {
+      return Math.floor(this.upperRange / 5);
     } else {
-      return Math.floor(this.upper_range / 10);
+      return Math.floor(this.upperRange / 10);
     }
   }
 
@@ -84,7 +84,7 @@ export default class ApexLineChart extends ApexLineChartProps {
   }
 
   get line_colors(): string[] | undefined {
-    if (this.sev_chart) {
+    if (this.sevChart) {
       return this.sev_colors;
     }
     return undefined;
@@ -141,7 +141,7 @@ export default class ApexLineChart extends ApexLineChartProps {
       },
       yaxis: {
         min: 0,
-        max: this.upper_range,
+        max: this.upperRange,
         tickAmount: this.y_axis_tick,
         axisTicks: {
           color: '#FF0000'
@@ -153,7 +153,7 @@ export default class ApexLineChart extends ApexLineChartProps {
           offsetY: 0
         },
         title: {
-          text: this.y_title,
+          text: this.yTitle,
           style: {
             color: this.white_black
           }

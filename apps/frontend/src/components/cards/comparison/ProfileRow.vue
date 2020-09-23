@@ -1,7 +1,7 @@
 <template>
   <v-col cols="4" xs="4" md="5">
     <div style="text-align:center;">
-      <i v-if="show_index">{{ index }} </i> <br />
+      <i v-if="showIndex">{{ index }} </i> <br />
       {{ name }} <br />
       <p style="font-size: 12px;">{{ start_time }}</p>
     </div>
@@ -15,7 +15,7 @@ const Props = Vue.extend({
     name: String,
     start_time: String,
     index: Number,
-    show_index: Boolean
+    showIndex: Boolean
   }
 });
 

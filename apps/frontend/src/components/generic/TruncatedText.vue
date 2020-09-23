@@ -3,8 +3,8 @@
     <template v-slot:activator="{on}">
       <span
         ref="text"
-        :style="span_style"
-        :class="['overflow'] + span_class"
+        :style="spanStyle"
+        :class="['overflow'] + spanClass"
         v-on="on"
       >
         {{ text }}
@@ -49,11 +49,11 @@ const Props = Vue.extend({
       type: String,
       required: true
     },
-    span_class: {
+    spanClass: {
       type: Array, // Array<string>
       default: () => []
     },
-    span_style: {
+    spanStyle: {
       type: String,
       default: ''
     }

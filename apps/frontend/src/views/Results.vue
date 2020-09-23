@@ -54,16 +54,16 @@
       <v-container fluid grid-list-md pa-2>
         <!-- Evaluation Info -->
         <v-row>
-          <v-col v-if="file_filter.length > 3">
+          <v-col v-if="fileFilter.length > 3">
             <v-slide-group v-model="eval_info" show-arrows>
               <v-slide-item
-                v-for="(file, i) in file_filter"
+                v-for="(file, i) in fileFilter"
                 :key="i"
                 v-slot:default="{active, toggle}"
                 class="mx-2"
               >
                 <v-card :width="info_width" @click="toggle">
-                  <EvaluationInfo :file_filter="file" />
+                  <EvaluationInfo :file-filter="file" />
                   <v-card-subtitle style="text-align: right;">
                     Profile Info ↓
                   </v-card-subtitle>
@@ -73,29 +73,29 @@
             <ProfData
               v-if="eval_info != null"
               class="my-4 mx-10"
-              :selected_prof="
-                root_profiles[prof_ids.indexOf(file_filter[eval_info])]
+              :selected-prof="
+                root_profiles[prof_ids.indexOf(fileFilter[eval_info])]
               "
             />
           </v-col>
           <v-col
-            v-for="(file, i) in file_filter"
+            v-for="(file, i) in fileFilter"
             v-else
             :key="i"
-            :cols="12 / file_filter.length"
+            :cols="12 / fileFilter.length"
           >
             <v-card @click="toggle_prof(i)">
-              <EvaluationInfo :file_filter="file" />
+              <EvaluationInfo :file-filter="file" />
               <v-card-subtitle style="text-align: right;">
                 Profile Info ↓
               </v-card-subtitle>
             </v-card>
           </v-col>
           <ProfData
-            v-if="eval_info != null && file_filter.length <= 3"
+            v-if="eval_info != null && fileFilter.length <= 3"
             class="my-4 mx-10"
-            :selected_prof="
-              root_profiles[prof_ids.indexOf(file_filter[eval_info])]
+            :selected-prof="
+              root_profiles[prof_ids.indexOf(fileFilter[eval_info])]
             "
           />
         </v-row>
@@ -149,7 +149,7 @@
                 <Treemap
                   v-model="tree_filters"
                   :filter="treemap_full_filter"
-                  :selected_control.sync="control_selection"
+                  :selected-control.sync="control_selection"
                 />
               </v-card-text>
             </v-card>
@@ -176,7 +176,7 @@
       color="warning"
       top
     >
-      <span v-if="file_filter.length" class="subtitle-2">
+      <span v-if="fileFilter.length" class="subtitle-2">
         All results are filtered out. Use the
         <v-icon>mdi-filter-remove</v-icon> button in the top right to clear
         filters and show all.
@@ -283,7 +283,7 @@ export default class Results extends ResultsProps {
    * Controlled by router.
    */
 
-  get file_filter(): FileID[] {
+  get fileFilter(): FileID[] {
     return FilteredDataModule.selected_file_ids;
   }
 
@@ -299,7 +299,7 @@ export default class Results extends ResultsProps {
     return {
       status: this.status_filter || undefined,
       severity: this.severity_filter || undefined,
-      fromFile: this.file_filter,
+      fromFile: this.fileFilter,
       tree_filters: this.tree_filters,
       search_term: this.search_term || '',
       omit_overlayed_controls: true,
@@ -314,7 +314,7 @@ export default class Results extends ResultsProps {
     return {
       status: this.status_filter || undefined,
       severity: this.severity_filter || undefined,
-      fromFile: this.file_filter,
+      fromFile: this.fileFilter,
       search_term: this.search_term || '',
       omit_overlayed_controls: true
     };
@@ -369,16 +369,16 @@ export default class Results extends ResultsProps {
    * The title to override with
    */
   get curr_title(): string | undefined {
-    if (this.file_filter.length == 1) {
+    if (this.fileFilter.length == 1) {
       let file = InspecDataModule.allFiles.find(
-        f => f.unique_id === this.file_filter[0]
+        f => f.unique_id === this.fileFilter[0]
       );
       if (file) {
         return file.filename;
       }
     }
-    if (this.file_filter.length > 1) {
-      return this.file_filter.length + ' files selected';
+    if (this.fileFilter.length > 1) {
+      return this.fileFilter.length + ' files selected';
     } else {
       return 'No files selected';
     }

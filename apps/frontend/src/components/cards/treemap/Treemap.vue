@@ -20,7 +20,7 @@
           >
             <!-- The body -->
             <Cell
-              :selected_control_id="selected_control"
+              :selectedControlID="selectedControl"
               :node="selected_node"
               :scales="scales"
               :depth="0"
@@ -66,7 +66,7 @@ const TreemapProps = Vue.extend({
       required: true
     },
     */
-    selected_control: {
+    selectedControl: {
       // Represents control id
       type: String,
       required: false
@@ -186,10 +186,10 @@ export default class Treemap extends TreemapProps {
     let new_state = [...this._state];
     if (is_leaf(n.data)) {
       let id = n.data.control.data.id;
-      if (id !== this.selected_control) {
-        this.$emit('update:selected_control', id);
+      if (id !== this.selectedControl) {
+        this.$emit('update:selectedControl', id);
       } else {
-        this.$emit('update:selected_control', null);
+        this.$emit('update:selectedControl', null);
       }
     } else {
       // Otherwise, dive away. Set course for the leading title
@@ -207,7 +207,7 @@ export default class Treemap extends TreemapProps {
       this.set_path(this._state.slice(0, this._state.length - 1));
 
       // Also clear selected
-      this.$emit('update:selected_control', null);
+      this.$emit('update:selectedControl', null);
     }
   }
 

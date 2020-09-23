@@ -2,14 +2,14 @@
   <v-stepper-content step="1">
     <v-form v-model="valid">
       <v-text-field
-        :value="access_token"
+        :value="accessToken"
         label="User Account Access Token"
         lazy-validation="lazy"
         :rules="[req_rule]"
         @input="change_access_token"
       />
       <v-text-field
-        :value="secret_token"
+        :value="secretToken"
         label="User Account Secret Token"
         :rules="[req_rule]"
         :append-icon="show_secret ? 'mdi-eye' : 'mdi-eye-off'"
@@ -48,8 +48,8 @@ import FileList from '@/components/global/upload_tabs/aws/FileList.vue';
 // We declare the props separately to make props types inferable.
 const Props = Vue.extend({
   props: {
-    access_token: String,
-    secret_token: String
+    accessToken: String,
+    secretToken: String
   }
 });
 
@@ -81,13 +81,13 @@ export default class S3Reader extends Props {
   // Callback for change in access token
   change_access_token(new_value: string) {
     local_access_token.set(new_value);
-    this.$emit('update:access_token', new_value);
+    this.$emit('update:accessToken', new_value);
   }
 
   // Callback for change in secret token
   change_secret_token(new_value: string) {
     local_secret_token.set(new_value);
-    this.$emit('update:secret_token', new_value);
+    this.$emit('update:secretToken', new_value);
   }
 
   /** On mount, try to look up stored auth info */

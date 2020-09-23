@@ -77,7 +77,7 @@ export interface TagHash {
 // to make props types inferrable.
 const EvaluationInfoProps = Vue.extend({
   props: {
-    file_filter: Number // Of type Filer from filteredData
+    fileFilter: Number // Of type Filer from filteredData
   }
 });
 
@@ -103,7 +103,7 @@ export default class EvaluationInfo extends EvaluationInfoProps {
 
   updated() {
     let file = InspecDataModule.allFiles.find(
-      f => f.unique_id === this.file_filter
+      f => f.unique_id === this.fileFilter
     );
     if (file) {
       let eva = file as EvaluationFile;
@@ -151,7 +151,7 @@ export default class EvaluationInfo extends EvaluationInfoProps {
 
   //gets file to retrieve corresponding data
   get file(): EvaluationFile {
-    return FilteredDataModule.evaluations([this.file_filter])[0].from_file;
+    return FilteredDataModule.evaluations([this.fileFilter])[0].from_file;
   }
 
   //gives more room for actual info when the "tags" button is not displayed
@@ -164,7 +164,7 @@ export default class EvaluationInfo extends EvaluationInfoProps {
 
   load_file() {
     let file = InspecDataModule.allFiles.find(
-      f => f.unique_id === this.file_filter
+      f => f.unique_id === this.fileFilter
     );
     if (file) {
       let eva = file as EvaluationFile;

@@ -76,7 +76,7 @@ export default class FileList extends Props {
     },
     {
       text: 'Time',
-      value: 'start_time'
+      value: 'startTime'
     },
     {
       text: 'Action',

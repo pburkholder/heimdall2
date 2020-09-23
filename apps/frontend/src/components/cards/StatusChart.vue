@@ -2,7 +2,7 @@
   <ApexPieChart
     :categories="categories"
     :series="series"
-    :center_label="center_label"
+    :centerLabel="centerLabel"
     :center_value="center_value"
     @category-selected="onSelect"
   />
@@ -20,7 +20,7 @@ const StatusChartProps = Vue.extend({
   props: {
     value: String, // The currently selected status, or null
     filter: Object, // Of type Filer from filteredData
-    show_compliance: Boolean
+    showCompliance: Boolean
     //supress: Boolean // Supress status selection
   }
 });
@@ -63,15 +63,15 @@ export default class StatusChart extends StatusChartProps {
     }
   ];
 
-  get center_label(): string {
-    if (this.show_compliance) {
+  get centerLabel(): string {
+    if (this.showCompliance) {
       return 'Compliance:';
     }
     return '';
   }
 
   get center_value(): string {
-    if (this.show_compliance) {
+    if (this.showCompliance) {
       let passed = StatusCountModule.countOf(this.filter, 'Passed');
       let total =
         passed +

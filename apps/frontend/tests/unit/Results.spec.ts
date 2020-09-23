@@ -55,7 +55,7 @@ describe('Profile Info', () => {
   it('shows correct number of files', () => {
     loadAll();
     selectAllFiles();
-    expect((wrapper.vm as any).file_filter.length).toBe(
+    expect((wrapper.vm as any).fileFilter.length).toBe(
       FilteredDataModule.selected_file_ids.length
     );
   });
@@ -68,7 +68,7 @@ describe('Profile Info', () => {
     profInfoWrapper = shallowMount(ProfData, {
       vuetify,
       propsData: {
-        selected_prof: (wrapper.vm as any).root_profiles[0]
+        selectedProf: (wrapper.vm as any).root_profiles[0]
       }
     });
 
@@ -83,7 +83,7 @@ describe('Profile Info', () => {
     profInfoWrapper = shallowMount(ProfData, {
       vuetify,
       propsData: {
-        selected_prof: (wrapper.vm as any).root_profiles[0]
+        selectedProf: (wrapper.vm as any).root_profiles[0]
       }
     });
 
@@ -104,7 +104,7 @@ describe('Profile Info', () => {
     profInfoWrapper = shallowMount(ProfData, {
       vuetify,
       propsData: {
-        selected_prof: (wrapper.vm as any).root_profiles[0]
+        selectedProf: (wrapper.vm as any).root_profiles[0]
       }
     });
 

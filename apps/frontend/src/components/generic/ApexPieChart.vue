@@ -39,8 +39,8 @@ const ApexPieChartProps = Vue.extend({
   props: {
     categories: Array, // Should be of type Category[]
     series: Array, // Should be of type number[]
-    center_label: String,
-    center_value: String
+    centerLabel: String,
+    centerValue: String
   }
 });
 
@@ -127,11 +127,11 @@ export default class ApexPieChart extends ApexPieChartProps {
               show: true,
               value: {color: '#99a2ac'},
               total: {
-                show: !!(this.center_label && this.center_value),
-                label: this.center_label,
+                show: !!(this.centerLabel && this.centerValue),
+                label: this.centerLabel,
                 showAlways: true,
                 color: '#008FFB',
-                formatter: () => this.center_value
+                formatter: () => this.centerValue
               }
             }
           }

@@ -115,7 +115,7 @@ class TreeItem {
 // to make props types inferrable.
 const Props = Vue.extend({
   props: {
-    selected_prof: {type: Object, required: true}
+    selectedProf: {type: Object, required: true}
   }
 });
 
@@ -125,13 +125,13 @@ const Props = Vue.extend({
 export default class ProfileData extends Props {
   //auto select the root prof
   mounted() {
-    this.active = [profile_unique_key(this.selected_prof)];
+    this.active = [profile_unique_key(this.selectedProf)];
   }
 
   //auto select the root prof when data changes
   get selected_watch(): string {
-    this.active = [profile_unique_key(this.selected_prof)];
-    return profile_unique_key(this.selected_prof);
+    this.active = [profile_unique_key(this.selectedProf)];
+    return profile_unique_key(this.selectedProf);
   }
 
   /** Models selected item ids */
@@ -139,14 +139,14 @@ export default class ProfileData extends Props {
   child_active: string[] = [];
   /** Models all loaded profiles */
   get items(): TreeItem[] {
-    let root_tree = new TreeItem(this.selected_prof);
+    let root_tree = new TreeItem(this.selectedProf);
     return root_tree.children;
   }
 
   /** Get the most recently selected */
   get selected(): context.ContextualizedProfile | undefined {
     if (this.true_active == undefined) {
-      return this.selected_prof;
+      return this.selectedProf;
     }
     let selected_profile = InspecDataModule.contextualProfiles.find(
       p => profile_unique_key(p) == this.true_active
@@ -238,7 +238,7 @@ export default class ProfileData extends Props {
 
   //the single root tree item
   get root_tree(): TreeItem[] {
-    let tree = new TreeItem(this.selected_prof);
+    let tree = new TreeItem(this.selectedProf);
     tree.children = [];
     return [tree];
   }
@@ -250,7 +250,7 @@ export default class ProfileData extends Props {
       if (this.active.length != 1) {
         this.active = [];
       } else {
-        this.active = [profile_unique_key(this.selected_prof)];
+        this.active = [profile_unique_key(this.selectedProf)];
       }
     } else {
       //clears other synced array to make sure one prof is selected at a time
@@ -266,7 +266,7 @@ export default class ProfileData extends Props {
     if (active.length == 0) {
       this.child_active = [];
       //default to root prof when unselected
-      this.active = [profile_unique_key(this.selected_prof)];
+      this.active = [profile_unique_key(this.selectedProf)];
     } else {
       if (this.active.length > 0) {
         this.active = [];

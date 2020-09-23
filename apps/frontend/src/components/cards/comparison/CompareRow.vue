@@ -10,7 +10,7 @@
 
       <!-- Various Statuses -->
       <v-col
-        v-for="index in shown_files"
+        v-for="index in shownFiles"
         :key="index - 1"
         cols="4"
         xs="4"
@@ -56,7 +56,7 @@
       <v-row>
         <v-col cols="3" xs="3" sm="2" md="1" />
         <v-col
-          v-for="index in shown_files"
+          v-for="index in shownFiles"
           :key="index - 1"
           cols="4"
           xs="4"
@@ -89,7 +89,7 @@ import {FilteredDataModule} from '../../../store/data_filters';
 const Props = Vue.extend({
   props: {
     controls: Array, // Of type Array<ContextualizedControl>
-    shown_files: Number,
+    shownFiles: Number,
     shift: Number
   }
 });

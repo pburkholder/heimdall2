@@ -275,13 +275,13 @@ export class Server extends VuexModule {
       .then(res => res.json())
       .then((v: any) => {
         if (typeof v === 'object') {
-          this.set_token(v.access_token);
+          this.set_token(v.accessToken);
           this.retrieve_profile();
           this.retrieve_personal_evaluations();
           this.retrieve_usergroups();
         } else {
           console.error(
-            `Something went wrong: Got ${v.access_token} for login response`
+            `Something went wrong: Got ${v.accessToken} for login response`
           );
           throw new ConnectionError(
             'BAD_RESPONSE',
