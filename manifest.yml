@@ -1,0 +1,27 @@
+---
+applications:
+- name: heimdall2pb
+  instances: 1
+  memory: 1500M
+  disk_quota: 6G
+  buildpacks: 
+    - https://github.com/starkandwayne/pancake-buildpack # flattens env variables
+    - https://github.com/cloudfoundry/nodejs-buildpack#develop
+#    - nodejs_buildpack
+  services:
+    - heimdall-db  
+  env:
+    NODE_ENV: production
+    #    POSTGRES_DB: heimdall2-db
+    # Update before deploying or use .env file with dotenv node package
+    ADMIN_PASSWORD: changeme
+    DATABASE_SSL: true
+    DATABASE_URL: $DATABASE_URL
+    PGSSLMODE: require
+  command: >-
+    sleep 600 && 
+    yarn backend sequelize-cli db:create && 
+    yarn backend sequelize-cli db:migrate && 
+    yarn backend sequelize-cli db:seed:all && 
+    bash setup-docker-secrets.sh && yarn run start
+
