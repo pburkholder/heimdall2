@@ -2,7 +2,7 @@
 applications:
 - name: heimdall2pb
   instances: 1
-  memory: 1500M
+  memory: 512M
   disk_quota: 6G
   buildpacks: 
     - https://github.com/starkandwayne/pancake-buildpack # flattens env variables
@@ -18,10 +18,7 @@ applications:
     DATABASE_SSL: true
     DATABASE_URL: $DATABASE_URL
     PGSSLMODE: require
+  # db:create not needed, broker already does it.
   command: >-
-    sleep 600 && 
-    yarn backend sequelize-cli db:create && 
-    yarn backend sequelize-cli db:migrate && 
-    yarn backend sequelize-cli db:seed:all && 
-    bash setup-docker-secrets.sh && yarn run start
+    yarn run start
 
